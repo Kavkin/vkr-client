@@ -2,6 +2,8 @@ import React from "react";
 
 import "./App.css";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import Enquries from "./pages/Enquries";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -10,8 +12,12 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/enquiries">Enquiry</Link>
         <Switch>
-          <Route path="/enquiries">enquiries</Route>
-          <Route path="/">home</Route>
+          <Route path="/enquiries">
+            <Enquries />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>
