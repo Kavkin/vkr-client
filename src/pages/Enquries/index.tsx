@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 interface Enqury {
+  id: number;
   name: string;
   age: number;
   done: boolean;
@@ -18,8 +19,9 @@ const Enquries: FC = (props): JSX.Element => {
   async function getEnquryList() {
     setIsLoading(true);
     try {
-      const res = await fetch("/enquries", {
+      const res = await fetch("/enquiries", {
         method: "Post",
+        headers: { "Content-Type": "application/json", Accept: "*/*" },
       });
       const data = await res.json();
       setEnquryList(data);
@@ -36,8 +38,8 @@ const Enquries: FC = (props): JSX.Element => {
     <div className="Enquries">
       {errorMessage}
       {isLoading && "loading..."}
-      {enquryList.map((enqury) => {
-        return <div>{enqury.name}</div>;
+      {enquryList.map((enquiry) => {
+        return <div key={enquiry.id}>{enquiry.name}</div>;
       })}
     </div>
   );

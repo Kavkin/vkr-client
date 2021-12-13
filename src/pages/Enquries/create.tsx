@@ -6,7 +6,7 @@ type CreateEnquiryProps = {
 };
 
 const CreateEnquiry: FC<CreateEnquiryProps> = (props): JSX.Element => {
-  const handleSubmit: React.FormEventHandler = (ev) => {
+  const handleSubmit: React.FormEventHandler = async (ev) => {
     ev.preventDefault();
     const target = ev.target as any;
     const result = {
@@ -15,6 +15,11 @@ const CreateEnquiry: FC<CreateEnquiryProps> = (props): JSX.Element => {
       type: "INTERNET",
     };
     console.log(result);
+    const res = await fetch("/enquiries", {
+      method: "Put",
+      body: JSON.stringify(result),
+      headers: { "Content-Type": "application/json", Accept: "*/*" },
+    });
   };
   return (
     <form onSubmit={handleSubmit} className="CreateEnquiry">

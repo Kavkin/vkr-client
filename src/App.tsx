@@ -2,7 +2,8 @@ import React from "react";
 
 import "./App.css";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import Enquries from "./pages/Enquries/create";
+import Enquries from "./pages/Enquries";
+import CreateEnquiry from "./pages/Enquries/create";
 import Home from "./pages/Home";
 
 function App() {
@@ -11,9 +12,13 @@ function App() {
       <BrowserRouter>
         <Link to="/">Home</Link>
         <Link to="/enquiries">Enquiry</Link>
+        <Link to="/enquiries/create">CreateEnquiry</Link>
         <Switch>
-          <Route path="/enquiries">
+          <Route exact path="/enquiries">
             <Enquries />
+          </Route>
+          <Route path="/enquiries/create">
+            <CreateEnquiry />
           </Route>
           <Route path="/">
             <Home />
